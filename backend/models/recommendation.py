@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
-from models import Base
+from db.database import Base
 from uuid import uuid4
 
 class Recommendation(Base):

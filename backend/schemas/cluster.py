@@ -23,6 +23,5 @@ class Cluster(ClusterInDBBase):
 class ClusterInDB(ClusterInDBBase):
     pass
 
-from schemas.farmer import Farmer
-from schemas.agent import Agent
-Cluster.update_forward_refs()
+from schemas import Farmer, Agent
+Cluster.model_rebuild()

@@ -25,5 +25,5 @@ class Farm(FarmInDBBase):
 class FarmInDB(FarmInDBBase):
     pass
 
-from .farm_data import FarmData
-Farm.update_forward_refs()
+from schemas import FarmData
+Farm.model_rebuild()
