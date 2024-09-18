@@ -11,17 +11,16 @@ class ClusterUpdate(ClusterBase):
     pass
 
 class ClusterInDBBase(ClusterBase):
-    id: int
+    id: str
 
     class Config:
         orm_mode = True
 
 class Cluster(ClusterInDBBase):
     members: List['Farmer'] = []
-    agent: List['Agent'] = []
 
 class ClusterInDB(ClusterInDBBase):
     pass
 
-from schemas import Farmer, Agent
+from . import Farmer
 Cluster.model_rebuild()

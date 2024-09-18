@@ -1,13 +1,17 @@
 from datetime import datetime, timedelta
 from typing import Any, Union
-
 from jose import jwt
 from passlib.context import CryptContext
+
+from fastapi import APIRouter
+from fastapi.security import OAuth2PasswordBearer
 
 from core.config import settings
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"{settings.API_V1_STR}/login/access-token")
 
+router = APIRouter()
 ALGORITHM = "HS256"
 
 def create_access_token(subject: Union[str, Any], expires_delta: timedelta = None) -> str:

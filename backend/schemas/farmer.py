@@ -24,8 +24,8 @@ class FarmerUpdate(FarmerBase):
         ] = None
 
 class FarmerInDBBase(FarmerBase):
-    id: int
-    cluster_id: Optional[int] = None
+    id: str
+    cluster_id: Optional[str] = None
 
     class Config:
         orm_mode = True

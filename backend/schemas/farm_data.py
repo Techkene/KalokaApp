@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 class FarmDataBase(BaseModel):
-    farm_id: int
+    farm_id: str
     timestamp: datetime
     ph_level: float
     water_temperature: float
@@ -12,14 +12,13 @@ class FarmDataBase(BaseModel):
     feed_quantity: float
 
 class FarmDataCreate(FarmDataBase):
-    staff_id: int | None = None
+    pass
 
 class FarmDataUpdate(FarmDataBase):
     pass
 
 class FarmDataInDBBase(FarmDataBase):
-    id: int
-    staff_id: int | None
+    id: str
 
     class Config:
         orm_mode = True

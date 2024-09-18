@@ -7,14 +7,14 @@ class FarmBase(BaseModel):
     size: float
 
 class FarmCreate(FarmBase):
-    owner_id: int
+    owner_id: str
 
 class FarmUpdate(FarmBase):
     pass
 
 class FarmInDBBase(FarmBase):
-    id: int
-    owner_id: int
+    id: str
+    owner_id: str
 
     class Config:
         orm_mode = True
@@ -25,5 +25,5 @@ class Farm(FarmInDBBase):
 class FarmInDB(FarmInDBBase):
     pass
 
-from schemas import FarmData
+from . import FarmData
 Farm.model_rebuild()

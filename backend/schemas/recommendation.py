@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 class RecommendationBase(BaseModel):
-    farm_id: int
+    farm_id: str
     timestamp: datetime
     recommendation_text: str
 
@@ -13,7 +13,7 @@ class RecommendationUpdate(RecommendationBase):
     pass
 
 class RecommendationInDBBase(RecommendationBase):
-    id: int
+    id: str
 
     class Config:
         orm_mode = True
