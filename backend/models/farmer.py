@@ -14,7 +14,7 @@ class Farmer(Base):
     hashed_password = Column(String, nullable=False)
     hashed_pin = Column(String, nullable=False)
     is_independent = Column(Boolean, default=False)
-    cluster_id = Column(Integer, ForeignKey("clusters.id"), nullable=True)
+    cluster_id = Column(UUID(as_uuid=True), ForeignKey("clusters.id"), nullable=True)
 
     farm = relationship("Farm", back_populates="owner")
     cluster = relationship("Cluster", back_populates="members")

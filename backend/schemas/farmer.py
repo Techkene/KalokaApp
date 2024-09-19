@@ -1,5 +1,5 @@
 from typing_extensions import Annotated, Optional
-from pydantic import BaseModel, EmailStr, StringConstraints
+from pydantic import BaseModel, EmailStr, StringConstraints, UUID4
 
 class FarmerBase(BaseModel):
     username: str
@@ -24,8 +24,8 @@ class FarmerUpdate(FarmerBase):
         ] = None
 
 class FarmerInDBBase(FarmerBase):
-    id: str
-    cluster_id: Optional[str] = None
+    id: UUID4
+    cluster_id: Optional[UUID4] = None
 
     class Config:
         orm_mode = True

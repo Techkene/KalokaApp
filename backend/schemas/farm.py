@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, UUID4
 from typing import List
 
 class FarmBase(BaseModel):
@@ -7,14 +7,14 @@ class FarmBase(BaseModel):
     size: float
 
 class FarmCreate(FarmBase):
-    owner_id: str
+    owner_id: UUID4
 
 class FarmUpdate(FarmBase):
     pass
 
 class FarmInDBBase(FarmBase):
-    id: str
-    owner_id: str
+    id: UUID4
+    owner_id: UUID4
 
     class Config:
         orm_mode = True

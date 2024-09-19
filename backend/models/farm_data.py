@@ -8,7 +8,7 @@ class FarmData(Base):
     __tablename__ = "farm_data"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
-    farm_id = Column(Integer, ForeignKey("farms.id"))
+    farm_id = Column(UUID(as_uuid=True), ForeignKey("farms.id"))
     farm = relationship("Farm", back_populates="data_points")
     timestamp = Column(DateTime)
     ph_level = Column(Float)

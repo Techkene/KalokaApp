@@ -21,7 +21,14 @@ def get_farmer_by_phone(db: Session, phone_number: str):
 def create_farmer(db: Session, farmer: FarmerCreate):
     hashed_password = get_password_hash(farmer.password)
     hashed_pin = get_pin_hash(farmer.pin)
-    db_farmer = Farmer(email=farmer.email, hashed_password=hashed_password, username=farmer.username, is_independent=farmer.is_independent, hashed_pin=hashed_pin)
+    db_farmer = Farmer(
+        email=farmer.email,
+        hashed_password=hashed_password,
+        username=farmer.username,
+        is_independent=farmer.is_independent,
+        hashed_pin=hashed_pin,
+        phone_number=farmer.phone_number
+        )
     db.add(db_farmer)
     db.commit()
     db.refresh(db_farmer)

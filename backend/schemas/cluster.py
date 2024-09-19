@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, UUID4
 from typing import List
 
 class ClusterBase(BaseModel):
@@ -11,7 +11,7 @@ class ClusterUpdate(ClusterBase):
     pass
 
 class ClusterInDBBase(ClusterBase):
-    id: str
+    id: UUID4
 
     class Config:
         orm_mode = True

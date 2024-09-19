@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, UUID4
 from datetime import datetime
 
 class FarmDataBase(BaseModel):
-    farm_id: str
+    farm_id: UUID4
     timestamp: datetime
     ph_level: float
     water_temperature: float
@@ -18,7 +18,7 @@ class FarmDataUpdate(FarmDataBase):
     pass
 
 class FarmDataInDBBase(FarmDataBase):
-    id: str
+    id: UUID4
 
     class Config:
         orm_mode = True
