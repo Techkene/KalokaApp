@@ -5,11 +5,14 @@ class FarmDataBase(BaseModel):
     farm_id: UUID4
     timestamp: datetime
     ph_level: float
-    water_temperature: float
-    water_color: str
-    duration_of_change: float
-    feed_type: str
-    feed_quantity: float
+    ammonia: float
+    dissolved_oxygen: float
+    dissolved_solid: float
+    temperature: float
+    rainfall: float
+    weight: float
+    feed_size: float
+    quantity_of_feed: float
 
 class FarmDataCreate(FarmDataBase):
     pass
