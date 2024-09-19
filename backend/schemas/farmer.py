@@ -7,6 +7,10 @@ class FarmerBase(BaseModel):
     phone_number: str
     is_independent: bool = False
 
+class FarmerLogin(BaseModel):
+    username: str
+    password: str
+
 class FarmerCreate(FarmerBase):
     password: str
     pin: Annotated[

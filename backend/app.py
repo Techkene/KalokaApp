@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from core.auth import router
 from core.config import settings
-from api.v1.endpoints.farmer import get_current_farmer, router, auth_router
+from api.v1.endpoints.farmer import router
 from db.database import Base, engine
 
 Base.metadata.create_all(bind=engine)
@@ -19,14 +19,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-v1 = FastAPI(
-    dependencies=[Depends(get_current_farmer)],
-)
-
-v1.include_router(auth_router, prefix='/api/v1')
-
-app.mount("", v1)
 
 @app.get("/")
 def root():

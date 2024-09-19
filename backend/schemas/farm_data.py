@@ -4,15 +4,22 @@ from datetime import datetime
 class FarmDataBase(BaseModel):
     farm_id: UUID4
     timestamp: datetime
-    ph_level: float
-    ammonia: float
-    dissolved_oxygen: float
-    dissolved_solid: float
-    temperature: float
-    rainfall: float
-    weight: float
-    feed_size: float
-    quantity_of_feed: float
+    stock_quantity: int
+    feed_type: str
+    mortality_count_morning: str
+    mortality_count_evening: str
+    feed_quantity: str
+    observation: str
+    medication_used: str
+
+class FarmDataUse(BaseModel):
+    stock_quantity: int
+    feed_type: str
+    mortality_count_morning: str
+    mortality_count_evening: str
+    feed_quantity: str
+    observation: str
+    medication_used: str
 
 class FarmDataCreate(FarmDataBase):
     pass
