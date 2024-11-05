@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
         body: JSON.stringify(farmData)
       });
       if (postData.ok) {
-        window.location.href = "/frontend/output.html";
+        window.location.href = "/output.html";
       }
     });
   });
