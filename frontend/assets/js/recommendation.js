@@ -1,6 +1,6 @@
 async function fetchRecommendation() {
     try {
-      const response = await fetch("http://127.0.0.1:8000/recommendation", {
+      const response = await fetch("https://kalokaapp-production.up.railway.app/recommendation", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
