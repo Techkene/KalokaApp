@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
         medication_used: medicationUsed
       };
 
-      const postData = await fetch("http://127.0.0.1:8000/submit", {
+      const postData = await fetch("https://kalokaapp-production.up.railway.app/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
