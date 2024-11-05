@@ -17,10 +17,7 @@ class ClusterInDBBase(ClusterBase):
         orm_mode = True
 
 class Cluster(ClusterInDBBase):
-    members: List['Farmer'] = []
+    pass
 
 class ClusterInDB(ClusterInDBBase):
     pass
-
-from . import Farmer
-Cluster.model_rebuild()

@@ -1,18 +1,20 @@
 from pydantic import ValidationError, UUID4
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Form
 from fastapi.security import OAuth2PasswordRequestForm
+from sqlalchemy import desc
 import schemas.farm_data
 import schemas.recommendation
 import schemas.token
 from sqlalchemy.orm import Session
 from jose import jwt, JWTError
 from datetime import timedelta
-
+from typing import Optional
 import crud, schemas, models
 from db.database import get_db
 from core.auth import create_access_token, oauth2_scheme, ALGORITHM
 from core.config import settings
 from ai.genai_conn import askGPT
+from datetime import datetime
 
 router = APIRouter()
 auth_router = APIRouter()
@@ -112,7 +114,23 @@ def delete_farmer(farmer_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Farmer not found")
     return db_farmer
 
-@router.post("/submit")
-def trigger_api(farm_data: schemas.farm_data.FarmDataUse, db: Session = Depends(get_db)):
+@router.post("/submit", response_model=schemas.recommendation.Recommendation)
+def trigger_api(farm_data: schemas.farm_data.FarmDataCreate, db: Session = Depends(get_db)):
+
     retVal = askGPT(farm_data)
-    return retVal
+    if retVal is not None:
+        rec_model = models.recommendation.Recommendation(
+            timestamp = datetime.now(),
+            recommendation_text = retVal
+        )
+        db.add(rec_model)
+        db.commit()
+        db.refresh(rec_model)
+
+    return rec_model
+
+@router.get("/recommendation", response_model=schemas.recommendation.Recommendation)
+def get_recommendation(db: Session = Depends(get_db)):
+    latest_recommendation = db.query(models.recommendation.Recommendation).order_by(desc(models.recommendation.Recommendation.timestamp)).first()
+    return latest_recommendation
+

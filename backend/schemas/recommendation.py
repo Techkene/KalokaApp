@@ -2,7 +2,6 @@ from pydantic import BaseModel, UUID4
 from datetime import datetime
 
 class RecommendationBase(BaseModel):
-    farm_id: UUID4
     timestamp: datetime
     recommendation_text: str
 

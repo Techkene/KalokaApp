@@ -7,23 +7,19 @@ class FarmBase(BaseModel):
     size: float
 
 class FarmCreate(FarmBase):
-    owner_id: UUID4
+    pass
 
 class FarmUpdate(FarmBase):
     pass
 
 class FarmInDBBase(FarmBase):
     id: UUID4
-    owner_id: UUID4
 
     class Config:
         orm_mode = True
 
 class Farm(FarmInDBBase):
-    data_points: List['FarmData'] = []
+    pass
 
 class FarmInDB(FarmInDBBase):
     pass
-
-from . import FarmData
-Farm.model_rebuild()

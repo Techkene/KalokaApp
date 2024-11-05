@@ -4,8 +4,8 @@ import os
 
 load_dotenv()
 
-database_url = os.getenv('DB_CONNECTION_STRING')
-secret = os.getenv('SECRET_KEY')
+database_url = "sqlite:///./test.db"
+secret = "my_secret_key"
 
 class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"

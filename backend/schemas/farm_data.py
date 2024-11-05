@@ -1,25 +1,15 @@
 from pydantic import BaseModel, UUID4
 from datetime import datetime
+from typing import Optional
 
 class FarmDataBase(BaseModel):
-    farm_id: UUID4
-    timestamp: datetime
-    stock_quantity: int
-    feed_type: str
-    mortality_count_morning: str
-    mortality_count_evening: str
-    feed_quantity: str
-    observation: str
-    medication_used: str
-
-class FarmDataUse(BaseModel):
-    stock_quantity: int
-    feed_type: str
-    mortality_count_morning: str
-    mortality_count_evening: str
-    feed_quantity: str
-    observation: str
-    medication_used: str
+    stock_qty: Optional[str] = None
+    feed_type: Optional[str] = None
+    morning_mortality: Optional[str] = None
+    evening_mortality: Optional[str] = None
+    feed_qty: Optional[str] = None
+    unusual_observation: Optional[str] = None
+    medication_used: Optional[str] = None
 
 class FarmDataCreate(FarmDataBase):
     pass

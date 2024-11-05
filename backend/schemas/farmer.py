@@ -29,7 +29,6 @@ class FarmerUpdate(FarmerBase):
 
 class FarmerInDBBase(FarmerBase):
     id: UUID4
-    cluster_id: Optional[UUID4] = None
 
     class Config:
         orm_mode = True
